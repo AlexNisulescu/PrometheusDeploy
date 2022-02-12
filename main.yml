@@ -1,0 +1,6 @@
+---
+- hosts: prometheusvms
+  name: Install prometheus on the vms
+  tasks:
+  - name: get the prometheus base image
+    
