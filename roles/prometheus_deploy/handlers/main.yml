@@ -1,0 +1,6 @@
+---
+# handlers file for roles/prometheus_deploy
+- name: Enable Prometheus
+  systemd:
+    name: prometheus.service
+    state: enabled

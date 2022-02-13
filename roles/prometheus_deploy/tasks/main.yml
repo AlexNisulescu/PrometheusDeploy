@@ -1,0 +1,27 @@
+---
+# tasks file for roles/prometheus_deploy
+- name: create the directory for prometheus
+  file:
+    path: /etc/prometheus
+    state: directory
+- name: get the prometheus base image
+  shell: wget "{{ prometheus_release }}" /etc/prometheus/prometheus.tar.gz
+- name: unzip the archive
+  shell: tar -xvf /etc/prometheus/prometheus.tar.gz
+- name: remove the archive
+  shell: rm /etc/prometheus/prometheus.tar.gz
+- name: copy the service file
+  copy:
+    src: prometheus.service
+    dest: /etc/systemd/system/prometheus.service
+- name: reload systemd daemon
+  systemd:
+- name: start prometheus
+  systemd:
+    name: prometheus
+    daemon-reload: yes
+    state: started
+- name: check if prometheus is up
+  shell: systemctl status prometheus.service
+  notify:
+  - Enable Prometheus

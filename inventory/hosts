@@ -1,3 +1,2 @@
-[prometheusvms]
-192.168.68.101
-192.168.68.102
+[prometheushosts]
+--YOURIPADDRESSHERE--
