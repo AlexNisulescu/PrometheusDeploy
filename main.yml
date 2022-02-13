@@ -1,0 +1,4 @@
+---
+- hosts: prometheushosts
+  roles:
+     - prometheus_deploy
