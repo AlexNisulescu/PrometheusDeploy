@@ -1,7 +1,12 @@
 # Ansible script for installing and configuring Prometheus
 
-## Index
-[[_TOC_]]
+## Table of contents
+  * [Index](#index)
+  * [Introduction](#introduction)
+  * [Requirements](#requirements)
+  * [How to use it](#how-to-use-it)
+  * [Contributors](#contributors)
+
 
 ## Introduction
 This repo was created from the need to repeatedly install Prometheus on all sort of hosts
