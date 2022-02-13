@@ -38,3 +38,4 @@ Now you have to:
 ## Contributors
     Creator: Alexandru Nișulescu
     Contact: alex.nisulescu1998@gmail.com
+    Linkedin: https://www.linkedin.com/in/alex-nisulescu-45822b178/
