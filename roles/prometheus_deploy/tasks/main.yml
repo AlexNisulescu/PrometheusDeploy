@@ -5,17 +5,25 @@
     path: /etc/prometheus
     state: directory
 - name: get the prometheus base image
-  shell: wget "{{ prometheus_release }}" /etc/prometheus/prometheus.tar.gz
+  shell: wget "{{ prometheus_release }}" -O /etc/prometheus/prometheus.tar.gz
 - name: unzip the archive
-  shell: tar -xvf /etc/prometheus/prometheus.tar.gz
+  shell: tar -xf /etc/prometheus/prometheus.tar.gz -C /etc/prometheus/ --strip-components=1
+- name: copy prometheus
+  copy:
+    content: /etc/prometheus/prometheus
+    dest: /usr/local/bin/prometheus
+    mode: +x
+- name: copy promtool
+  copy:
+    content: /etc/prometheus/promtool
+    dest: /usr/local/bin/promtool
+    mode: +x
 - name: remove the archive
   shell: rm /etc/prometheus/prometheus.tar.gz
 - name: copy the service file
   copy:
     src: prometheus.service
     dest: /etc/systemd/system/prometheus.service
-- name: reload systemd daemon
-  systemd:
 - name: start prometheus
   systemd:
     name: prometheus

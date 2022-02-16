@@ -1,4 +1,5 @@
 ---
 - hosts: prometheushosts
+  become: yes
   roles:
      - prometheus_deploy
