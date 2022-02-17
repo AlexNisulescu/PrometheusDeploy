@@ -9,15 +9,7 @@
 - name: unzip the archive
   shell: tar -xf /etc/prometheus/prometheus.tar.gz -C /etc/prometheus/ --strip-components=1
 - name: copy prometheus
-  copy:
-    content: /etc/prometheus/prometheus
-    dest: /usr/local/bin/prometheus
-    mode: +x
-- name: copy promtool
-  copy:
-    content: /etc/prometheus/promtool
-    dest: /usr/local/bin/promtool
-    mode: +x
+  shell: mv /etc/prometheus/prometheus /usr/local/bin/ && mv /etc/prometheus/promtool /usr/local/bin/
 - name: remove the archive
   shell: rm /etc/prometheus/prometheus.tar.gz
 - name: copy the service file
@@ -29,7 +21,3 @@
     name: prometheus
     daemon-reload: yes
     state: started
-- name: check if prometheus is up
-  shell: systemctl status prometheus.service
-  notify:
-  - Enable Prometheus

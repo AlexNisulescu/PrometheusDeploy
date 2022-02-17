@@ -1,7 +1,7 @@
+# /etc/systemd/system/prometheus.service
 [Unit]
 Description=Prometheus
-Wants=network-online.target
-After=network-online.target
+After=network.target
 
 [Service]
 User=root
@@ -11,7 +11,13 @@ ExecStart=/usr/local/bin/prometheus \
     --config.file /etc/prometheus/prometheus.yml \
     --storage.tsdb.path /var/lib/prometheus/ \
     --web.console.templates=/etc/prometheus/consoles \
-    --web.console.libraries=/etc/prometheus/console_libraries
+    --web.console.libraries=/etc/prometheus/console_libraries \
+    --web.enable-admin-api \
+    --web.enable-lifecycle \
+    --storage.tsdb.retention.time=90d
+ExecReload=/bin/kill -s HUP $MAINPID
+LimitNOFILE=10000
+TimeoutStopSec=20
 
 [Install]
 WantedBy=multi-user.target

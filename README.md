@@ -9,7 +9,6 @@
 
 
 ## Introduction
--- WORK IN PROGRESS --
 
 This repo was created from the need to repeatedly install Prometheus on all sort of hosts
     

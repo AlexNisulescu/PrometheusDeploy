@@ -1,5 +1,6 @@
 ---
 - hosts: prometheushosts
   become: yes
+  gather_facts: no
   roles:
      - prometheus_deploy
